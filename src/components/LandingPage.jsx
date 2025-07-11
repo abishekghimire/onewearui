@@ -24,6 +24,13 @@ import {
   StarFilled,
 } from "@ant-design/icons";
 import { useState } from "react";
+import { menuItems } from "../data/menuItems";
+import { featuredProducts } from "../data/featuredProducts";
+import { cartItems } from "../data/cartItems";
+import { heroSlides } from "../data/heroSlides";
+import HeaderSection from "./HeaderSection";
+import CartDrawer from "./CartDrawer";
+import MobileBottomNav from "./MobileBottomNav";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Text } = Typography;
@@ -34,249 +41,14 @@ export default function LandingPage() {
   const [cartVisible, setCartVisible] = useState(false);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
-  const categories = [
-    { key: "home", label: "Home" },
-    { key: "new-arrivals", label: "New Arrivals" },
-    { key: "shop", label: "Shop" },
-    { key: "contact", label: "Contact" },
-  ];
-
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Summer Floral Dress",
-      price: 89.99,
-      originalPrice: 129.99,
-      image: "/placeholder.svg?height=300&width=250",
-      rating: 4.5,
-      reviews: 124,
-      sale: true,
-    },
-    {
-      id: 2,
-      name: "Classic Denim Jacket",
-      price: 79.99,
-      image: "/placeholder.svg?height=300&width=250",
-      rating: 4.8,
-      reviews: 89,
-      sale: false,
-    },
-    {
-      id: 3,
-      name: "Casual Cotton T-Shirt",
-      price: 24.99,
-      image: "/placeholder.svg?height=300&width=250",
-      rating: 4.3,
-      reviews: 156,
-      sale: false,
-    },
-    {
-      id: 4,
-      name: "Elegant Evening Gown",
-      price: 199.99,
-      originalPrice: 299.99,
-      image: "/placeholder.svg?height=300&width=250",
-      rating: 4.9,
-      reviews: 67,
-      sale: true,
-    },
-    {
-      id: 5,
-      name: "Comfortable Joggers",
-      price: 49.99,
-      image: "/placeholder.svg?height=300&width=250",
-      rating: 4.4,
-      reviews: 203,
-      sale: false,
-    },
-    {
-      id: 6,
-      name: "Stylish Blazer",
-      price: 129.99,
-      image: "/placeholder.svg?height=300&width=250",
-      rating: 4.6,
-      reviews: 91,
-      sale: false,
-    },
-    {
-      id: 7,
-      name: "Cozy Sweater",
-      price: 69.99,
-      originalPrice: 89.99,
-      image: "/placeholder.svg?height=300&width=250",
-      rating: 4.7,
-      reviews: 145,
-      sale: true,
-    },
-    {
-      id: 8,
-      name: "Designer Handbag",
-      price: 159.99,
-      image: "/placeholder.svg?height=300&width=250",
-      rating: 4.8,
-      reviews: 78,
-      sale: false,
-    },
-  ];
-
-  const cartItems = [
-    {
-      id: 1,
-      name: "Summer Floral Dress",
-      price: 89.99,
-      quantity: 1,
-      image: "/placeholder.svg?height=80&width=80",
-    },
-    {
-      id: 2,
-      name: "Classic Denim Jacket",
-      price: 79.99,
-      quantity: 2,
-      image: "/placeholder.svg?height=80&width=80",
-    },
-  ];
-
-  const heroSlides = [
-    {
-      title: "Summer Collection 2024",
-      subtitle: "Discover the latest trends",
-      image: "/placeholder.svg?height=500&width=1200",
-      buttonText: "Shop Now",
-    },
-    {
-      title: "Up to 50% Off",
-      subtitle: "End of season sale",
-      image: "/placeholder.svg?height=500&width=1200",
-      buttonText: "View Sale",
-    },
-    {
-      title: "New Arrivals",
-      subtitle: "Fresh styles just in",
-      image: "/placeholder.svg?height=500&width=1200",
-      buttonText: "Explore",
-    },
-  ];
-
   return (
     <Layout className="min-h-screen">
       {/* Header */}
-      <Header className="bg-white shadow-sm px-4 lg:px-8 sticky top-0 z-50 h-20">
-        <div className="flex items-center justify-between h-full max-w-7xl mx-auto">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Button
-              type="text"
-              icon={<MenuOutlined />}
-              className="lg:hidden mr-2"
-              onClick={() => setMobileMenuVisible(true)}
-            />
-            <img
-              src="/onewear.png"
-              alt="Logo"
-              onClick={() => navigate("/")}
-              style={{
-                height: "150px",
-                width: "146px",
-                cursor: "pointer",
-                marginTop: "8px",
-              }}
-            />
-          </div>
 
-          {/* Desktop Navigation */}
-          <Menu
-            mode="horizontal"
-            items={categories}
-            className="hidden lg:flex border-none flex-1 justify-center text-lg"
-            style={{ minWidth: 0 }}
-          />
-
-          {/* Search and Actions */}
-          <div className="flex items-center space-x-4">
-            <Search
-              placeholder="Search products..."
-              className="hidden md:block w-64"
-              enterButton={<SearchOutlined />}
-            />
-            <Button
-              type="text"
-              icon={<SearchOutlined />}
-              className="md:hidden"
-            />
-            <Button type="text" icon={<HeartOutlined size={24} />} />
-            <Button type="text" icon={<UserOutlined />} />
-            <Badge count={cartItems.length} size="small">
-              <Button
-                type="text"
-                icon={<ShoppingCartOutlined />}
-                onClick={() => setCartVisible(true)}
-              />
-            </Badge>
-          </div>
-        </div>
-      </Header>
-
+      <HeaderSection />
       {/* Mobile Menu Drawer */}
-      <Drawer
-        title="Menu"
-        placement="left"
-        onClose={() => setMobileMenuVisible(false)}
-        open={mobileMenuVisible}
-        width={280}
-      >
-        <Menu mode="vertical" items={categories} className="border-none" />
-        <Divider />
-        <Search
-          placeholder="Search products..."
-          enterButton={<SearchOutlined />}
-          className="mb-4"
-        />
-      </Drawer>
 
       {/* Shopping Cart Drawer */}
-      <Drawer
-        title="Shopping Cart"
-        placement="right"
-        onClose={() => setCartVisible(false)}
-        open={cartVisible}
-        width={400}
-        footer={
-          <div className="space-y-4">
-            <div className="flex justify-between items-center text-lg font-semibold">
-              <span>Total: $249.97</span>
-            </div>
-            <Button type="primary" size="large" block>
-              Checkout
-            </Button>
-          </div>
-        }
-      >
-        <List
-          itemLayout="horizontal"
-          dataSource={cartItems}
-          renderItem={(item) => (
-            <List.Item
-              key={item.id}
-              actions={[
-                <Button type="link" size="small">
-                  Remove
-                </Button>,
-              ]}
-            >
-              <List.Item.Meta
-                avatar={<Avatar src={item.image} size={64} shape="square" />}
-                title={item.name}
-                description={
-                  <div>
-                    <div>${item.price}</div>
-                    <div>Qty: {item.quantity}</div>
-                  </div>
-                }
-              />
-            </List.Item>
-          )}
-        />
-      </Drawer>
 
       <Content>
         {/* Hero Carousel */}
@@ -318,21 +90,21 @@ export default function LandingPage() {
               Shop by Category
             </Title>
             <Row gutter={[16, 16]}>
-              {categories.slice(0, 4).map((category) => (
-                <Col xs={12} sm={6} key={category.key}>
+              {menuItems.slice(0, 4).map((items) => (
+                <Col xs={12} sm={6} key={items.key}>
                   <Card
                     hoverable
                     cover={
                       <div className="h-48 bg-gray-200 flex items-center justify-center">
                         <Text className="text-lg font-medium">
-                          {category.label}
+                          {items.label}
                         </Text>
                       </div>
                     }
                     className="text-center"
                   >
                     <Button type="link" className="p-0">
-                      Shop {category.label}
+                      Shop {items.label}
                     </Button>
                   </Card>
                 </Col>
@@ -557,6 +329,7 @@ export default function LandingPage() {
           </div>
         </div>
       </Footer>
+      <MobileBottomNav />
     </Layout>
   );
 }
